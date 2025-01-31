@@ -178,6 +178,8 @@ class FlicFile:
             if image is None:
                 write_frame_type([], frame)
             else:
+                if len(image) != self._width * self._height:
+                    raise ValueError("Invalid image size")
                 subchunks = SubchunkType()
                 if not self._palette or self._next_palette:
                     if not self._next_palette:
